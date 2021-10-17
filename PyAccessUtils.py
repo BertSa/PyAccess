@@ -8,10 +8,11 @@ import pyperclip as pc
 from gi.repository import Gtk, Notify
 
 APPINDICATOR_ID = 'ca.bertsa.pyaccess'
+PATH_GH_TOKEN = 'privates/token_gh.bertsa'
 
 
 def copy_to_clip(_):
-    with open('privates/token_gh.bertsa') as file:
+    with open(PATH_GH_TOKEN) as file:
         token = file.read()
         pc.set_clipboard('xclip')
         pc.copy(token)
