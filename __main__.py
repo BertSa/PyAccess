@@ -6,4 +6,4 @@ gi.require_version('Notify', '0.7')
 from PyAccess import PyAccess
 
 if __name__ == "__main__":
-    PyAccess()
+    PyAccess().start()
