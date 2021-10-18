@@ -1,12 +1,8 @@
-import gi
+from gi.repository import Gtk
+from gi.repository.AppIndicator3 import Indicator, IndicatorCategory, IndicatorStatus
 
 from GtkCustom import _create_menu_item, _create_menu_item_check, _createMoreMenu
 from PyAccessUtils import setKeyboardLayout, copy_to_clip, notify_me, usb_access
-
-gi.require_version("Gtk", "3.0")
-gi.require_version('AppIndicator3', '0.1')
-from gi.repository import Gtk
-from gi.repository.AppIndicator3 import Indicator, IndicatorCategory, IndicatorStatus
 
 APP_INDICATOR_ID = 'ca.bertsa.pyaccess'
 

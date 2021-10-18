@@ -1,9 +1,5 @@
 import os
 
-import gi
-
-gi.require_version("Gtk", "3.0")
-gi.require_version('Notify', '0.7')
 import pyperclip as pc
 from gi.repository import Gtk, Notify
 
