@@ -1,5 +1,3 @@
-from time import sleep
-
 import pyudev
 from pyudev import MonitorObserver
 
@@ -24,9 +22,3 @@ class UsbWatcher:
 
     def start_watching(self):
         self.observer.start()
-        try:
-            while True:
-                sleep(100000000)
-        except KeyboardInterrupt:
-            self.observer.stop()
-        self.observer.join()

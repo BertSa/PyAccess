@@ -18,7 +18,7 @@ setup(
     author_email='bertsa.pro@gmail.com',
     description='This is an app I made specifically for me but I made it public beacause it could be useful for some '
                 'people.',
-    long_description=read('README'),
+    long_description=read('README.md'),
     install_requires=[
         'PyGObject>=3.42.0',
         'pyperclip>=1.8.2',

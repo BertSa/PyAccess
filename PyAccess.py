@@ -8,16 +8,11 @@ from UsbWatcher import UsbWatcher
 APP_INDICATOR_ID = 'ca.bertsa.pyaccess'
 
 
-def print_device_event(action, device):
-    print('background event {0}: {1}'.format(action, device.properties.get("ID_MODEL")))
-
-
 class PyAccess:
-
     def __init__(self):
         self.item_keyboard = None
         self.menu = Gtk.Menu()
-        self.usb_watcher = UsbWatcher(print_device_event)
+        self.usb_watcher = UsbWatcher(self.print_device_event)
 
         self.item_copy_key = _create_menu_item("Copy Key", copy_to_clip)
         self.item_usb_access = _create_menu_item("Usb Access", usb_access)
@@ -39,9 +34,9 @@ class PyAccess:
         self.indicator.set_status(IndicatorStatus.ACTIVE)
         self.indicator.set_menu(self.menu)
 
-    # noinspection PyMethodMayBeStatic
     def start(self):
         try:
+            self.usb_watcher.start_watching()
             Gtk.main()
         except KeyboardInterrupt:
             Gtk.main_quit()
@@ -64,3 +59,11 @@ class PyAccess:
         for device in devices_connected:
             if str(device).find("Keychron") != -1:
                 self.item_keyboard.set_sensitive(True)
+
+    def print_device_event(self, action, device):
+        id_model: str = device.properties.get("ID_MODEL")
+        if id_model.lower().__contains__("keychron"):
+            if action == 'add':
+                self.item_keyboard.set_sensitive(True)
+            elif action == 'remove':
+                self.item_keyboard.set_sensitive(False)
